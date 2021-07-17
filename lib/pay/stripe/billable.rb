@@ -76,6 +76,12 @@ module Pay
       # Returns Pay::Subscription
       def subscribe(name: Pay.default_product_name, plan: Pay.default_plan_name, **options)
         quantity = options.delete(:quantity) || 1
+        metered = options.delete(:metered) || false
+        if metered
+          items = [plan: plan]
+        else
+            items = [plan: plan, quantity: quantity]
+        end
         opts = {
           expand: ["pending_setup_intent", "latest_invoice.payment_intent"],
           items: [plan: plan, quantity: quantity],
