@@ -84,7 +84,7 @@ module Pay
         end
         opts = {
           expand: ["pending_setup_intent", "latest_invoice.payment_intent"],
-          items: [plan: plan, quantity: quantity],
+          items: items,
           off_session: true
         }.merge(options)
 
