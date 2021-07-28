@@ -89,7 +89,7 @@ module Pay
         }.merge(options)
 
         # Inherit trial from plan unless trial override was specified
-        opts[:trial_from_plan] = true unless opts[:trial_period_days]
+        opts[:trial_from_plan] = true unless opts[:trial_period_days] || opts[:trial_end]
 
         # Load the Stripe customer to verify it exists and update card if needed
         opts[:customer] = customer.id
